@@ -39,3 +39,8 @@ LOAD DATA LOCAL INPATH 'tbl1.csv' INTO TABLE tbl1;
 --
 -- >>> Escriba su respuesta a partir de este punto <<<
 --
+INSERT OVERWRITE LOCAL DIRECTORY 'output'
+ROW FORMAT DELIMITED FIELDS TERMINATED BY ','
+STORED AS TEXTFILE
+
+SELECT tb0.c1,tb0.c2, tb1.c4[tb0.c2] FROM tbl0 tb0 INNER JOIN tbl1 tb1 on tb0.c1 = tb1.c1;

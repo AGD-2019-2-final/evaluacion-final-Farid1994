@@ -1,4 +1,8 @@
 import sys
-#
-# >>> Escriba el codigo del reducer a partir de este punto <<<
-#
+import string
+
+if __name__ == "__main__":
+    for line in sys.stdin:
+        line=line.strip()
+        line2=line.split("\t")
+        print(line2[1]+ ','+line2[0])

@@ -11,3 +11,18 @@
 --
 -- >>> Escriba su respuesta a partir de este punto <<<
 --
+
+DROP TABLE IF EXISTS inputs;
+CREATE TABLE inputs (letterq STRING,
+                   dates STRING,
+                   number INT)
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY '\t';
+LOAD DATA LOCAL INPATH "data.tsv" OVERWRITE INTO TABLE inputs;
+INSERT OVERWRITE LOCAL DIRECTORY 'output'
+ROW FORMAT DELIMITED FIELDS TERMINATED BY ','
+STORED AS TEXTFILE
+
+SELECT letterq, count(1) FROM inputs
+GROUP BY letterq
+ORDER BY letterq;

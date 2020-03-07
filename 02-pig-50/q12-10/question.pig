@@ -33,3 +33,6 @@ u = LOAD 'data.csv' USING PigStorage(',')
 --
 -- >>> Escriba su respuesta a partir de este punto <<<
 --
+t1= FOREACH u GENERATE $2;
+result= FILTER t1 BY $0 MATCHES 'D.*' OR surname MATCHES 'E.*' OR surname MATCHES 'F.*' OR surname MATCHES 'G.*' OR surname MATCHES 'H.*' OR surname MATCHES 'I.*' OR surname MATCHES 'J.*' OR surname MATCHES 'K.*';
+STORE result INTO 'output' USING PigStorage();

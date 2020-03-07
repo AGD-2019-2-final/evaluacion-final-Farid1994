@@ -20,3 +20,7 @@ u = LOAD 'data.csv' USING PigStorage(',')
 --
 -- >>> Escriba su respuesta a partir de este punto <<<
 --
+UU2= FOREACH u GENERATE SUBSTRING($3,0,4);
+gr= GROUP UU2 BY $0;
+result = FOREACH gr GENERATE group, COUNT(UU2);
+STORE result INTO 'output' USING PigStorage(',');
